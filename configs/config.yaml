@@ -1,0 +1,99 @@
+# ==============================================================================
+# AI-Based Smart Crowd Monitoring Payload Configuration
+# ==============================================================================
+
+system:
+  name: "Smart Crowd Surveillance Drone"
+  version: "1.0.0"
+  target_fps: 20
+  frame_skip: 1
+
+camera:
+  width: 960
+  height: 720
+  fov: 1.45 # ~83 degrees (Mavic 2 Pro camera)
+
+perception:
+  detector:
+    model_name: "yolov8n.pt"
+    imgsz: 960
+    conf: 0.35
+    iou: 0.45
+    person_class_id: 0
+    tracker_config: "bytetrack.yaml"
+  density:
+    grid_rows: 10
+    grid_cols: 10
+    gaussian_sigma: 1.5
+    hotspot_ratio_threshold: 0.35 # cell containing >35% of peak is hotspot
+  faces:
+    authorized_dir: "data/authorized"
+    unknown_dir: "data/unknown"
+    billboard_dir: "data/billboards"
+    tolerance: 0.55
+    prefer_backend: "auto" # "face_recognition", "insightface", or "opencv"
+
+decision:
+  crowd_warning_threshold: 12
+  crowd_critical_threshold: 25
+  hysteresis_frames: 8 # Debounce window: must sustain for 8 frames to change state
+  battery_warning_threshold: 30.0
+  battery_critical_threshold: 20.0
+  battery_drain_per_sec: 0.06 # % per second in flight
+  inspection_duration_sec: 6.0
+
+alerts:
+  serial_port: "COM3"
+  baud_rate: 115200
+  use_hardware_serial: false # Set true when connected to physical Arduino
+  virtual_arduino:
+    enable_audio: true
+    audio_freq_normal: 0
+    audio_freq_warning: 800
+    audio_freq_critical: 2000
+
+flight:
+  patrol_altitude: 28.0
+  inspect_altitude: 4.5
+  cruise_speed: 3.0
+  inspect_speed: 1.5
+  max_speed: 4.0
+  max_climb_speed: 2.0
+  takeoff_altitude: 28.0
+  home_position: [0.0, 0.0, 28.0]
+  geofence:
+    x_min: -35.0
+    x_max: 35.0
+    y_min: -35.0
+    y_max: 35.0
+    z_min: 1.0
+    z_max: 40.0
+  pid:
+    altitude:
+      kp: 2.2
+      ki: 0.08
+      kd: 1.1
+    roll:
+      kp: 1.8
+      ki: 0.04
+      kd: 0.75
+    pitch:
+      kp: 1.8
+      ki: 0.04
+      kd: 0.75
+    yaw:
+      kp: 1.4
+      ki: 0.02
+      kd: 0.45
+
+simulation:
+  time_step_ms: 32
+  pedestrian_count: 45
+  plaza_size_meters: 60.0
+  webots_controller_url: "ipc://1270/mavic_2_pro"
+
+logging:
+  output_dir: "results"
+  telemetry_file: "results/telemetry.csv"
+  alerts_file: "results/alerts.csv"
+  summary_file: "results/mission_summary.json"

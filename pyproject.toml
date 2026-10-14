@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drone-crowd-surveillance-payload"
+version = "1.0.0"
+description = "AI-Based Smart Crowd Monitoring Payload for Autonomous Surveillance Drones"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Robotics & Computer Vision Engineering Team" }
+]
+keywords = [
+    "drone",
+    "uav",
+    "surveillance",
+    "yolov8",
+    "bytetrack",
+    "crowd-counting",
+    "face-recognition",
+    "webots",
+    "flight-controller",
+    "robotics"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Robotics",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+    "ultralytics>=8.0.0",
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0",
+    "pyyaml>=6.0",
+    "matplotlib>=3.7.0",
+    "pandas>=2.0.0",
+    "pyserial>=3.5",
+    "scipy>=1.10.0"
+]
+
+[project.optional-dependencies]
+face = [
+    "insightface>=0.7.3",
+    "onnxruntime>=1.16.0"
+]
+test = [
+    "pytest>=7.0.0"
+]
+dev = [
+    "pytest>=7.0.0",
+    "insightface>=0.7.3",
+    "onnxruntime>=1.16.0"
+]
+
+[project.scripts]
+drone-surveillance = "main:run_mission"
+drone-face-demo = "face_demo:main"
+drone-evaluate = "evaluate:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+python_classes = ["Test*"]
+

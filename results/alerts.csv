@@ -1,0 +1,4 @@
+timestamp,sim_time,alert_level,trigger_reason,details
+23.573,0.050,NORMAL,Nominal conditions,"Count: 5, Battery: 98.0%"
+25.790,0.450,WARNING,Crowd Congestion (14 persons),"Count: 14, Battery: 98.0%"
+34.074,2.300,NORMAL,Nominal conditions,"Count: 1, Battery: 97.9%"

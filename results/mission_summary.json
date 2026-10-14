@@ -1,0 +1,33 @@
+{
+  "mission_duration_sec": 80.19,
+  "total_frames_logged": 273,
+  "peak_crowd_count": 76,
+  "total_alerts": 3,
+  "alerts_history": [
+    {
+      "elapsed_sec": 23.57,
+      "sim_time": 0.05,
+      "alert_level": "NORMAL",
+      "trigger_reason": "Nominal conditions",
+      "details": "Count: 5, Battery: 98.0%"
+    },
+    {
+      "elapsed_sec": 25.79,
+      "sim_time": 0.45,
+      "alert_level": "WARNING",
+      "trigger_reason": "Crowd Congestion (14 persons)",
+      "details": "Count: 14, Battery: 98.0%"
+    },
+    {
+      "elapsed_sec": 34.07,
+      "sim_time": 2.3,
+      "alert_level": "NORMAL",
+      "trigger_reason": "Nominal conditions",
+      "details": "Count: 1, Battery: 97.9%"
+    }
+  ],
+  "metadata": {
+    "mode": "webcam",
+    "fps": 20
+  }
+}
